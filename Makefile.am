@@ -1,125 +1,101 @@
 bin_PROGRAMS = advzip advpng advmng advdef
 
 7z_SOURCES = \
-	7z/7zdeflate.cc \
-	7z/7zlzma.cc \
-	7z/AriBitCoder.cc \
-	7z/CRC.cc \
-	7z/DeflateDecoder.cc \
-	7z/DeflateEncoder.cc \
-	7z/HuffmanEncoder.cc \
-	7z/IInOutStreams.cc \
-	7z/InByte.cc \
-	7z/LSBFDecoder.cc \
-	7z/LSBFEncoder.cc \
-	7z/LZMA.cc \
-	7z/LZMADecoder.cc \
-	7z/LZMAEncoder.cc \
-	7z/LenCoder.cc \
-	7z/LiteralCoder.cc \
-	7z/OutByte.cc \
-	7z/WindowIn.cc \
-	7z/WindowOut.cc
+	src/7z/7zdeflate.cc \
+	src/7z/7zlzma.cc \
+	src/7z/AriBitCoder.cc \
+	src/7z/CRC.cc \
+	src/7z/DeflateDecoder.cc \
+	src/7z/DeflateEncoder.cc \
+	src/7z/HuffmanEncoder.cc \
+	src/7z/IInOutStreams.cc \
+	src/7z/InByte.cc \
+	src/7z/LSBFDecoder.cc \
+	src/7z/LSBFEncoder.cc \
+	src/7z/LZMA.cc \
+	src/7z/LZMADecoder.cc \
+	src/7z/LZMAEncoder.cc \
+	src/7z/LenCoder.cc \
+	src/7z/LiteralCoder.cc \
+	src/7z/OutByte.cc \
+	src/7z/WindowIn.cc \
+	src/7z/WindowOut.cc
 
 libdeflate_SOURCES = \
-	libdeflate/adler32.c \
-	libdeflate/crc32.c \
-	libdeflate/deflate_compress.c\
-	libdeflate/deflate_decompress.c \
-	libdeflate/gzip_compress.c \
-	libdeflate/gzip_decompress.c \
-	libdeflate/utils.c \
-	libdeflate/zlib_compress.c \
-	libdeflate/zlib_decompress.c
+	src/libdeflate/adler32.c \
+	src/libdeflate/crc32.c \
+	src/libdeflate/deflate_compress.c\
+	src/libdeflate/deflate_decompress.c \
+	src/libdeflate/gzip_compress.c \
+	src/libdeflate/gzip_decompress.c \
+	src/libdeflate/utils.c \
+	src/libdeflate/zlib_compress.c \
+	src/libdeflate/zlib_decompress.c
 
 
 zopfli_SOURCES = \
-	zopfli/blocksplitter.c \
-	zopfli/cache.c \
-	zopfli/deflate.c \
-	zopfli/gzip_container.c \
-	zopfli/hash.c \
-	zopfli/katajainen.c \
-	zopfli/lz77.c \
-	zopfli/squeeze.c \
-	zopfli/tree.c \
-	zopfli/util.c \
-	zopfli/zlib_container.c \
-	zopfli/zopfli.h \
-	zopfli/zopfli_lib.c
+	src/zopfli/blocksplitter.c \
+	src/zopfli/cache.c \
+	src/zopfli/deflate.c \
+	src/zopfli/gzip_container.c \
+	src/zopfli/hash.c \
+	src/zopfli/katajainen.c \
+	src/zopfli/lz77.c \
+	src/zopfli/squeeze.c \
+	src/zopfli/tree.c \
+	src/zopfli/util.c \
+	src/zopfli/zlib_container.c \
+	src/zopfli/zopfli.h \
+	src/zopfli/zopfli_lib.c
+
+advbase_SOURCES = \
+	src/file.cc \
+	src/data.cc \
+	src/siglock.cc \
+	src/compress.cc \
+	src/getopt.c \
+	src/snprintf.c \
+	src/portable.c \
+	$(7z_SOURCES) \
+	$(libdeflate_SOURCES) \
+	$(zopfli_SOURCES)
 
 advzip_SOURCES = \
-	rezip.cc \
-	zip.cc \
-	file.cc \
-	data.cc \
-	siglock.cc \
-	compress.cc \
-	zipsh.cc \
-	getopt.c \
-	snprintf.c \
-	portable.c \
-	$(7z_SOURCES) \
-	$(libdeflate_SOURCES) \
-	$(zopfli_SOURCES)
+	src/rezip.cc \
+	src/zip.cc \
+	src/zipsh.cc \
+	$(advbase_SOURCES)
 
 advpng_SOURCES = \
-	repng.cc \
-	pngex.cc \
-	file.cc \
-	data.cc \
-	siglock.cc \
-	compress.cc \
-	getopt.c \
-	snprintf.c \
-	portable.c \
-	lib/fz.c \
-	lib/png.c \
-	lib/error.c \
-	lib/snstring.c \
-	$(7z_SOURCES) \
-	$(libdeflate_SOURCES) \
-	$(zopfli_SOURCES)
+	src/repng.cc \
+	src/pngex.cc \
+	src/lib/fz.c \
+	src/lib/png.c \
+	src/lib/error.c \
+	src/lib/snstring.c \
+	$(advbase_SOURCES)
 
 advmng_SOURCES = \
-	remng.cc \
-	pngex.cc \
-	mngex.cc \
-	scroll.cc \
-	file.cc \
-	data.cc \
-	siglock.cc \
-	compress.cc \
-	getopt.c \
-	snprintf.c \
-	portable.c \
-	lib/fz.c \
-	lib/png.c \
-	lib/mng.c \
-	lib/error.c \
-	lib/snstring.c \
-	$(7z_SOURCES) \
-	$(libdeflate_SOURCES) \
-	$(zopfli_SOURCES)
+	src/remng.cc \
+	src/pngex.cc \
+	src/mngex.cc \
+	src/scroll.cc \
+	src/lib/fz.c \
+	src/lib/png.c \
+	src/lib/mng.c \
+	src/lib/error.c \
+	src/lib/snstring.c \
+	$(advbase_SOURCES)
 
 advdef_SOURCES = \
-	redef.cc \
-	file.cc \
-	data.cc \
-	siglock.cc \
-	compress.cc \
-	getopt.c \
-	snprintf.c \
-	pngex.cc \
-	portable.c \
-	lib/fz.c \
-	lib/error.c \
-	lib/snstring.c \
-	lib/png.c \
-	lib/mng.c \
-	$(7z_SOURCES) \
-	$(libdeflate_SOURCES) \
-	$(zopfli_SOURCES)
+	src/redef.cc \
+	src/pngex.cc \
+	src/lib/fz.c \
+	src/lib/error.c \
+	src/lib/snstring.c \
+	src/lib/png.c \
+	src/lib/mng.c \
+	$(advbase_SOURCES)
 
 # Add the .version file in the distribution
 dist-hook:
@@ -131,13 +107,13 @@ EXTRA_DIST = \
 	doc/advdef.1 doc/advzip.1 doc/advpng.1 doc/advmng.1 doc/history.1 doc/readme.1 doc/authors.1 doc/install.1 \
 	doc/advdef.txt doc/advzip.txt doc/advpng.txt doc/advmng.txt doc/history.txt doc/readme.txt doc/authors.txt doc/install.txt \
 	autogen.sh autover.sh \
-	7z/README \
-	libdeflate/README.md \
-	libdeflate/COPYING \
-	libdeflate/NEWS.md \
-	zopfli/README \
-	zopfli/COPYING \
-	zopfli/CONTRIBUTORS \
+	src/7z/README \
+	src/libdeflate/README.md \
+	src/libdeflate/COPYING \
+	src/libdeflate/NEWS.md \
+	src/zopfli/README \
+	src/zopfli/COPYING \
+	src/zopfli/CONTRIBUTORS \
 	test/test.lst \
 	test/archive.zip \
 	test/italy.png \
@@ -151,93 +127,93 @@ EXTRA_DIST = \
 	test/basn6a04.png
 
 noinst_HEADERS = \
-	snprintf.c \
-	pngex.h \
-	mngex.h \
-	scroll.h \
-	compress.h \
-	file.h \
-	data.h \
-	zip.h \
-	except.h \
-	siglock.h \
-	portable.h \
-	lib/png.h \
-	lib/mng.h \
-	lib/fz.h \
-	lib/endianrw.h \
-	lib/error.h \
-	lib/snstring.h \
-	lib/extra.h \
-	7z/7z.h \
-	7z/AriBitCoder.h \
-	7z/AriConst.h \
-	7z/AriPrice.h \
-	7z/BinTree.h \
-	7z/BinTree2.h \
-	7z/BinTree2Main.h \
-	7z/BinTree3.h \
-	7z/BinTree3Main.h \
-	7z/BinTree3Z.h \
-	7z/BinTree3ZMain.h \
-	7z/BinTree4.h \
-	7z/BinTree4Main.h \
-	7z/BinTree4b.h \
-	7z/BinTree4bMain.h \
-	7z/BinTreeMF.h \
-	7z/BinTreeMFMain.h \
-	7z/BinTreeMain.h \
-	7z/BitTreeCoder.h \
-	7z/CRC.h \
-	7z/Const.h \
-	7z/DeflateDecoder.h \
-	7z/DeflateEncoder.h \
-	7z/HuffmanDecoder.h \
-	7z/HuffmanEncoder.h \
-	7z/IInOutStreams.h \
-	7z/InByte.h \
-	7z/LSBFDecoder.h \
-	7z/LSBFEncoder.h \
-	7z/LZMA.h \
-	7z/LZMADecoder.h \
-	7z/LZMAEncoder.h \
-	7z/LenCoder.h \
-	7z/LiteralCoder.h \
-	7z/OutByte.h \
-	7z/Portable.h \
-	7z/RCDefs.h \
-	7z/RangeCoder.h \
-	7z/WindowIn.h \
-	7z/WindowOut.h \
-	libdeflate/adler32_vec_template.h \
-	libdeflate/bt_matchfinder.h \
-	libdeflate/common_defs.h \
-	libdeflate/cpu_features_common.h \
-	libdeflate/crc32_multipliers.h \
-	libdeflate/crc32_tables.h \
-	libdeflate/decompress_template.h \
-	libdeflate/deflate_compress.h \
-	libdeflate/deflate_constants.h \
-	libdeflate/gzip_constants.h \
-	libdeflate/hc_matchfinder.h \
-	libdeflate/ht_matchfinder.h \
-	libdeflate/lib_common.h \
-	libdeflate/libdeflate.h \
-	libdeflate/matchfinder_common.h \
-	libdeflate/zlib_constants.h \
-	zopfli/blocksplitter.h \
-	zopfli/cache.h \
-	zopfli/deflate.h \
-	zopfli/gzip_container.h \
-	zopfli/hash.h \
-	zopfli/katajainen.h \
-	zopfli/lz77.h \
-	zopfli/symbols.h \
-	zopfli/squeeze.h \
-	zopfli/tree.h \
-	zopfli/util.h \
-	zopfli/zlib_container.h \
-	zopfli/zopfli.h
+	src/snprintf.c \
+	src/pngex.h \
+	src/mngex.h \
+	src/scroll.h \
+	src/compress.h \
+	src/file.h \
+	src/data.h \
+	src/zip.h \
+	src/except.h \
+	src/siglock.h \
+	src/portable.h \
+	src/lib/png.h \
+	src/lib/mng.h \
+	src/lib/fz.h \
+	src/lib/endianrw.h \
+	src/lib/error.h \
+	src/lib/snstring.h \
+	src/lib/extra.h \
+	src/7z/7z.h \
+	src/7z/AriBitCoder.h \
+	src/7z/AriConst.h \
+	src/7z/AriPrice.h \
+	src/7z/BinTree.h \
+	src/7z/BinTree2.h \
+	src/7z/BinTree2Main.h \
+	src/7z/BinTree3.h \
+	src/7z/BinTree3Main.h \
+	src/7z/BinTree3Z.h \
+	src/7z/BinTree3ZMain.h \
+	src/7z/BinTree4.h \
+	src/7z/BinTree4Main.h \
+	src/7z/BinTree4b.h \
+	src/7z/BinTree4bMain.h \
+	src/7z/BinTreeMF.h \
+	src/7z/BinTreeMFMain.h \
+	src/7z/BinTreeMain.h \
+	src/7z/BitTreeCoder.h \
+	src/7z/CRC.h \
+	src/7z/Const.h \
+	src/7z/DeflateDecoder.h \
+	src/7z/DeflateEncoder.h \
+	src/7z/HuffmanDecoder.h \
+	src/7z/HuffmanEncoder.h \
+	src/7z/IInOutStreams.h \
+	src/7z/InByte.h \
+	src/7z/LSBFDecoder.h \
+	src/7z/LSBFEncoder.h \
+	src/7z/LZMA.h \
+	src/7z/LZMADecoder.h \
+	src/7z/LZMAEncoder.h \
+	src/7z/LenCoder.h \
+	src/7z/LiteralCoder.h \
+	src/7z/OutByte.h \
+	src/7z/Portable.h \
+	src/7z/RCDefs.h \
+	src/7z/RangeCoder.h \
+	src/7z/WindowIn.h \
+	src/7z/WindowOut.h \
+	src/libdeflate/adler32_vec_template.h \
+	src/libdeflate/bt_matchfinder.h \
+	src/libdeflate/common_defs.h \
+	src/libdeflate/cpu_features_common.h \
+	src/libdeflate/crc32_multipliers.h \
+	src/libdeflate/crc32_tables.h \
+	src/libdeflate/decompress_template.h \
+	src/libdeflate/deflate_compress.h \
+	src/libdeflate/deflate_constants.h \
+	src/libdeflate/gzip_constants.h \
+	src/libdeflate/hc_matchfinder.h \
+	src/libdeflate/ht_matchfinder.h \
+	src/libdeflate/lib_common.h \
+	src/libdeflate/libdeflate.h \
+	src/libdeflate/matchfinder_common.h \
+	src/libdeflate/zlib_constants.h \
+	src/zopfli/blocksplitter.h \
+	src/zopfli/cache.h \
+	src/zopfli/deflate.h \
+	src/zopfli/gzip_container.h \
+	src/zopfli/hash.h \
+	src/zopfli/katajainen.h \
+	src/zopfli/lz77.h \
+	src/zopfli/symbols.h \
+	src/zopfli/squeeze.h \
+	src/zopfli/tree.h \
+	src/zopfli/util.h \
+	src/zopfli/zlib_container.h \
+	src/zopfli/zopfli.h
 
 man_MANS = doc/advdef.1 doc/advzip.1 doc/advpng.1 doc/advmng.1
 

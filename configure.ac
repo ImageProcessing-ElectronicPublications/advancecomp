@@ -4,8 +4,8 @@ dnl Get version number from git
 m4_define([git_revision], m4_esyscmd_s([./autover.sh]))
 AC_INIT([AdvanceCOMP], [git_revision], [], [], [http://www.advancemame.it])
 AM_INIT_AUTOMAKE([foreign no-dependencies subdir-objects])
-AC_CONFIG_SRCDIR([rezip.cc])
-AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_SRCDIR([src/rezip.cc])
+AC_CONFIG_HEADERS([src/config.h])
 AC_CANONICAL_HOST
 
 dnl Checks for programs.
