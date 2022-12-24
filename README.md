@@ -26,3 +26,7 @@ This package contains:
 * `advpng` - Recompression utility for `png` files
 * `advmng` - Recompression utility for `mng` files
 * `advdef` - Recompression utility for deflate streams in `.png`, `.mng` and `.gz` files
+
+## Test files
+
+The test files are in [advancecomp-test](https://github.com/ImageProcessing-ElectronicPublications/advancecomp-test).
